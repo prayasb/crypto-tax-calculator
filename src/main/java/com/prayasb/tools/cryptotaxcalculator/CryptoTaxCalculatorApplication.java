@@ -47,7 +47,7 @@ public class CryptoTaxCalculatorApplication implements CommandLineRunner {
         transactionList.stream()
             .filter(t -> t.getTransactionType().equals(TransactionType.BUY))
             .map(b -> (Buy) b)
-            .filter(b -> b.getQuoteAmount().getCurrency().equals(USD))
+            .filter(b -> b.getQuoteAmount().isUsdOrEquivalent())
             .sorted(dateComparator())
             .collect(Collectors.groupingBy(b -> b.getBaseAmount().getCurrency()));
 
@@ -62,7 +62,7 @@ public class CryptoTaxCalculatorApplication implements CommandLineRunner {
         transactionList.stream()
             .filter(t -> t.getTransactionType().equals(TransactionType.BUY))
             .map(b -> (Buy) b)
-            .filter(b -> !b.getQuoteAmount().getCurrency().equals(USD))
+            .filter(b -> !b.getQuoteAmount().isUsdOrEquivalent())
             .map(
                 b ->
                     new Sell(

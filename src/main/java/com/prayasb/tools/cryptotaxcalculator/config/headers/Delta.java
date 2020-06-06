@@ -15,6 +15,7 @@ import java.util.function.Function;
 
 public class Delta {
   public static final String USD = "USD";
+  public static final String USDC = "USDC"; // assuming USD ~ USDC
 
   private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
 

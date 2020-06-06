@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 import static com.prayasb.tools.cryptotaxcalculator.config.headers.Delta.USD;
+import static com.prayasb.tools.cryptotaxcalculator.config.headers.Delta.USDC;
 
 public class ValueUtil {
     private static final NumberFormat USD_NUMBER_FORMAT = NumberFormat.getNumberInstance();
@@ -23,10 +24,14 @@ public class ValueUtil {
     }
 
     public static String getAmountForDisplay(BigDecimal amount, String currency) {
-        if (USD.equals(currency)) {
+        if (isUsdOrEquivalent(currency)) {
             return USD_NUMBER_FORMAT.format(amount);
         } else {
             return CRYPTO_NUMBER_FORMAT.format(amount);
         }
+    }
+
+    public static boolean isUsdOrEquivalent(String currency) {
+        return USD.equals(currency) || currency.startsWith(USDC);
     }
 }

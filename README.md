@@ -13,8 +13,8 @@ cost basis. It was a quick and dirty solution so, might contain bugs and lacks b
 practices.
 
 At this point, this is intended to be used only with the exported CSV from the Delta
-app. The code assumes the CSV output format from Delta as of March 2019 - which can be
-found in this repository `src/main/resources/delta_import_template_march_2019.xlsx`.
+app. The code assumes the CSV output format from Delta as of June 2020 - which can be
+found in this repository `src/main/resources/delta_import_template.xlsx`.
 
 ### Running the application
 

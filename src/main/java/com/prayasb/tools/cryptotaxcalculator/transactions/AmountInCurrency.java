@@ -1,11 +1,10 @@
 package com.prayasb.tools.cryptotaxcalculator.transactions;
 
+import com.prayasb.tools.cryptotaxcalculator.utils.ValueUtil;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import static com.prayasb.tools.cryptotaxcalculator.config.headers.Delta.USD;
 
 @Data
 public class AmountInCurrency {
@@ -18,12 +17,16 @@ public class AmountInCurrency {
     }
 
     private BigDecimal scale(BigDecimal amount, String currency) {
-        if (amount != null && USD.equals(currency)) {
+        if (amount != null && ValueUtil.isUsdOrEquivalent(currency)) {
             return amount.setScale(2, RoundingMode.HALF_UP);
         } else if (amount != null) {
             return amount.setScale(8, RoundingMode.HALF_UP);
         }
 
         return null;
+    }
+
+    public boolean isUsdOrEquivalent() {
+        return ValueUtil.isUsdOrEquivalent(currency);
     }
 }
